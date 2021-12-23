@@ -1,0 +1,50 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "bugfixes": true
+      }
+    ],
+    // "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        // "libraryDirectory": "lib",
+        "style": true
+      }
+    ],
+    "@loadable/babel-plugin",
+    "babel-plugin-styled-components",
+    [
+      "@babel/plugin-proposal-optional-chaining"
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": false
+      }
+    ]
+    // [
+    //   "@babel/transform-runtime",
+    //   {
+    //     "regenerator": true
+    //   }
+    // ]
+  ],
+  "ignore": [
+    "node_modules",
+    "build",
+    "dist"
+  ]
+}
