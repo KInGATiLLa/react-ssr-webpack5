@@ -2,8 +2,8 @@ const {merge} = require('webpack-merge')
 const baseConfig = require('../webpack.base.js')
 const path = require('path')
 const webpack = require('webpack')
-const TerserPlugin = require('terser-webpack-plugin') // This plugin is used to minify your JavaScript/Typescript files.
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin') // A Webpack plugin to optimize \ minimize CSS assets.
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const LoadablePlugin = require('@loadable/webpack-plugin')
 const ROOT_DIR = path.resolve(__dirname, '../../')
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args)
@@ -82,9 +82,6 @@ const clientConfig = {
   output: {
     path: resolvePath(BUILD_DIR, 'client'),
     publicPath: '/client/',
-    // Chunkhash is based on webpack entry point Each entry defined will have it’s own hash.
-    // If anything changes for that particular entry point than only corresponding hash will change.
-    // :8 is used to done slicing of hashes (eg: 8c4cbfdb instead of 8c4cbfdb91ff93f3f3c5).
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[name].[chunkhash:8].js',
     assetModuleFilename: 'assets/[name].[hash][ext][query]',
@@ -100,16 +97,14 @@ const clientConfig = {
       writeToDisk: true,
       filename: `${BUILD_DIR}/loadable-stats.json`,
     }),
-    // Add any plugins required here for example: Bundle Analyzer, Copy Plugin etc
   ],
   optimization: {
-    runtimeChunk: 'single', // creates a runtime file to be shared for all generated chunks.
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all', // This indicates which chunks will be selected for optimization.
+      chunks: 'all',
       automaticNameDelimiter: '-',
       cacheGroups: {
         vendor: {
-          // to convert long vendor generated large name into vendor.js
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'all',
@@ -118,19 +113,18 @@ const clientConfig = {
     },
     minimize: true,
     minimizer: [
-      new CssMinimizerPlugin({}), // minify the css
+      new CssMinimizerPlugin({}),
       new TerserPlugin({
         terserOptions: {
           format: {
-            comments: false, // It will drop all the console.log statements from the final production build
+            comments: false,
           },
           compress: {
-            // It will stop showing any console.log statement in dev tools. Make it false if you want to see consoles in production mode.
             drop_console: true,
           },
         },
         extractComments: false,
-        exclude: [], // If you want to exclude any files so that it doesn't get minified.
+        exclude: [],
       }),
     ],
   },

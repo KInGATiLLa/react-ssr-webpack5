@@ -5,11 +5,11 @@
   "scripts": {
     "start:dev": "rimraf ./dist && webpack --mode=development --config webpack/dev/webpack.dev.server.js --config webpack/dev/webpack.dev.client.js && node dist/server.js",
     "start": "cross-env NODE_ENV=development npm-run-all --parallel startWatch:*",
-    "startWatch:build-server": "webpack --config webpack/dev/webpack.dev.server.js --watch --no-cache --progress --profile",
-    "startWatch:build-client": "webpack --config webpack/dev/webpack.dev.client.js --watch --no-cache --progress --profile",
+    "startWatch:build-server": "webpack --config webpack/dev/webpack.dev.server.js --watch",
+    "startWatch:build-client": "webpack --config webpack/dev/webpack.dev.client.js --watch --no-cache",
     "startWatch:server": "nodemon --watch dist --exec node dist/server.js",
-    "build": "cross-env NODE_ENV=production rimraf ./dist && webpack --config webpack/prod/webpack.prod.server.js --config webpack/prod/webpack.prod.client.js --progress --profile",
-    "build:dev": "rimraf ./dist && webpack --config webpack/dev/webpack.dev.server.js --config webpack/dev/webpack.dev.client.js --progress --profile"
+    "build": "cross-env NODE_ENV=production rimraf ./dist && webpack --config webpack/prod/webpack.prod.server.js --config webpack/prod/webpack.prod.client.js",
+    "build:dev": "rimraf ./dist && webpack --config webpack/dev/webpack.dev.server.js --config webpack/dev/webpack.dev.client.js"
   },
   "browserslist": {
     "production": [
@@ -31,7 +31,7 @@
     "@nivo/core": "^0.75.0",
     "@nivo/pie": "^0.75.0",
     "@tinymce/tinymce-react": "^3.13.0",
-    "antd": "^4.17.4",
+    "antd": "^4.16.9",
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "compression": "^1.7.4",
@@ -75,6 +75,7 @@
     "@babel/preset-typescript": "^7.16.5",
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/webpack-plugin": "^5.15.2",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -95,6 +96,7 @@
     "babel-plugin-styled-components": "^2.0.2",
     "concurrently": "^6.5.1",
     "copy-webpack-plugin": "^10.2.0",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.3.1",

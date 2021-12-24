@@ -14,10 +14,12 @@
       "import",
       {
         "libraryName": "antd",
-        // "libraryDirectory": "lib",
+        // "libraryDirectory": "es",
         "style": true
-      }
+      },
+      "antd"
     ],
+    // "react-refresh/babel",
     "@loadable/babel-plugin",
     "babel-plugin-styled-components",
     [

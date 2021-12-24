@@ -3,9 +3,8 @@ import {AppStyled} from './styles'
 import {Routes, Route, Link, Outlet, Navigate, useLocation, useNavigate} from 'react-router-dom'
 import {Button} from 'antd'
 import MyButton from './Button'
-// import ogImage from '../assets/og_image.jpg'
+import ogImage from '../assets/og_image.jpg'
 import './style.less'
-import '../../../node_modules/antd/dist/antd.css'
 
 const fakeAuthProvider = {
   isAuthenticated: false,
@@ -23,9 +22,13 @@ const App = () => {
   return (
     <AuthProvider>
       <div className="bg-color">
-        <AppStyled>Welcome to the React Final Boiler Plate</AppStyled>
-        <MyButton>My btn</MyButton>
-        <h1>Auth Example</h1>
+        <AppStyled>Welcome to the React Final Boiler sfsfff</AppStyled>
+        <MyButton>My btn adas asdd</MyButton>
+        <h1>Auth Example adasd asd</h1>
+        <p>
+          This example demonstrates a simple login flow with three pages: a public page, a protected page, and a login page. In order to see the
+          protected page, you must first login. Pretty standard stuff.
+        </p>
         <p>
           This example demonstrates a simple login flow with three pages: a public page, a protected page, and a login page. In order to see the
           protected page, you must first login. Pretty standard stuff.
@@ -38,6 +41,9 @@ const App = () => {
           Notice the URL change each time. If you click the back button at this point, would you expect to go back to the login page? No! You&apos;re
           already logged in. Try it out, and you&apos;ll see you go back to the page you visited just *before* logging in, the public page.
         </p>
+        <div>
+          <img src={ogImage} alt="og image" width={300} height={200} />
+        </div>
         <Button>My antd button</Button>
         <Routes>
           <Route element={<Layout />}>
@@ -53,9 +59,6 @@ const App = () => {
             />
           </Route>
         </Routes>
-        {/* <div>
-        <img src={ogImage} alt="og image" width={300} height={200} />
-      </div> */}
       </div>
     </AuthProvider>
   )

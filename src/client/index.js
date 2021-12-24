@@ -6,6 +6,8 @@ import {loadableReady} from '@loadable/component'
 
 const renderApp = () => {
   const rootContent = document.getElementById('root')
+
+  console.log('module.hot :>> ', module.hot)
   const renderMethod = module.hot ? render : hydrate
 
   renderMethod(

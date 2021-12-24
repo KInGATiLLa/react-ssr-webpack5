@@ -1,6 +1,9 @@
+import path from 'path'
 import express from 'express'
 import compression from 'compression'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import bodyParser from 'body-parser'
 import webpack from 'webpack'
 import WebpackDevMiddleware from 'webpack-dev-middleware'
 import WebpackHotMiddleware from 'webpack-hot-middleware'
@@ -13,20 +16,21 @@ const app = express()
 
 if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackConfig)
-
   app.use(
     WebpackDevMiddleware(compiler, {
-      publicPath: webpackConfig.output.publicPath,
+      publicPath: compiler.options.output.publicPath,
       serverSideRender: true,
     })
   )
-
   app.use(WebpackHotMiddleware(compiler))
 }
 
 // Gzip
 app.use(compression())
-app.use(express.static('dist'))
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use('/', express.static(path.join('dist/client', '/')))
 
 app.get('*', (req, res) => {
   try {
